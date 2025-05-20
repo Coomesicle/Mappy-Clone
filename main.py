@@ -1,6 +1,8 @@
 import pygame
 import sys
-import player
+from player import Player
+from entity import Entity
+from enemy import Enemy
 
 pygame.init()
 
@@ -59,7 +61,8 @@ def start_screen(rectangle):
     return
 
 def startGame():
-    player1 = player.Player(700, 0, xScreen, RAIL_Y_POSITIONS, TRAMPOLINE_X_POSITIONS)
+    player1 = Player(700, 0, xScreen, RAIL_Y_POSITIONS, TRAMPOLINE_X_POSITIONS)
+    enemy1 = Enemy(700, 0, xScreen, RAIL_Y_POSITIONS, TRAMPOLINE_X_POSITIONS)
     running = True
 
     while running:
@@ -73,6 +76,9 @@ def startGame():
         draw_rails(screen)
         player1.update()
         player1.draw(screen)
+        
+        enemy1.update(player1)
+        enemy1.draw(screen)
 
         pygame.display.flip()
         clock.tick(60)

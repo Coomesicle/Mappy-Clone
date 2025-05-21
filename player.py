@@ -6,11 +6,21 @@ class Player(Entity):
         super().__init__(x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS, "player", color=(0, 0, 255))
 
     def handle_input(self):
+        if self.falling:
+            return
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            self.move_horizontal(-self.speed)
+            if self.jumping:
+                if self.move_horizontal(-26):
+                    self.exit_trampoline()
+            else:
+                self.move_horizontal(-self.speed)
         if keys[pygame.K_RIGHT]:
-            self.move_horizontal(self.speed)
+            if self.jumping:
+                if self.move_horizontal(26):
+                    self.exit_trampoline()
+            else:
+                self.move_horizontal(self.speed)
 
     def update(self):
         self.handle_input()

@@ -6,10 +6,13 @@ class Enemy(Entity):
     def __init__(self, x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS):
         super().__init__(SCREEN_WIDTH-x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS, "enemy", color=(255, 0, 0))
         self.direction = 1
+        self.alive = True
 
         
 
     def update(self, player):
+        if not self.alive:
+            return
 
         on_trampoline = self.check_trampoline_bounce()
         
@@ -24,6 +27,12 @@ class Enemy(Entity):
                 
         elif not self.falling:
             self.move_horizontal(self.speed * self.direction)
+            self.check_collision(player)
         self.update_movement()
+
+    def check_collision(self, player):
+        if player.rect.centerx - 15 <= self.rect.centerx <= player.rect.centerx + 15 and player.rail_index == self.rail_index:
+            player.kill()
+            self.alive = False
 
 

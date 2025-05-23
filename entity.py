@@ -58,6 +58,7 @@ class Entity:
                     self.rect.centerx = tramp_x + 25
                 return True
         return False
+    
         
     def exit_trampoline(self):
         for i, rails_y in enumerate(self.rails):
@@ -70,3 +71,5 @@ class Entity:
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
+
+    

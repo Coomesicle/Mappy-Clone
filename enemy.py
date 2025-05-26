@@ -27,12 +27,10 @@ class Enemy(Entity):
                 
         elif not self.falling:
             self.move_horizontal(self.speed * self.direction)
-            self.check_collision(player)
+            if self.game.check_collision(player, self):
+                player.kill()
+                self.alive = False
         self.update_movement()
 
-    def check_collision(self, player):
-        if player.rect.centerx - 15 <= self.rect.centerx <= player.rect.centerx + 15 and player.rail_index == self.rail_index:
-            player.kill()
-            self.alive = False
 
 

@@ -6,6 +6,7 @@ class Player(Entity):
         super().__init__(x, rail_index, "player", game, color=(0, 0, 255))
         self.lives = 3
         self.alive = True
+        self.points = 0
 
     def handle_input(self):
         if self.falling:

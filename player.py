@@ -2,8 +2,8 @@ import pygame
 from entity import Entity
 
 class Player(Entity):
-    def __init__(self, x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS):
-        super().__init__(x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS, "player", color=(0, 0, 255))
+    def __init__(self, x, rail_index, game):
+        super().__init__(x, rail_index, "player", game, color=(0, 0, 255))
         self.lives = 3
         self.alive = True
 

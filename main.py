@@ -3,6 +3,7 @@ import sys
 from player import Player
 from entity import Entity
 from enemy import Enemy
+from game import Game
 
 pygame.init()
 
@@ -61,8 +62,9 @@ def start_screen(rectangle):
     return
 
 def startGame():
-    player1 = Player(700, 0, xScreen, RAIL_Y_POSITIONS, TRAMPOLINE_X_POSITIONS)
-    enemy1 = Enemy(700, 0, xScreen, RAIL_Y_POSITIONS, TRAMPOLINE_X_POSITIONS)
+    game = Game(xScreen, RAIL_Y_POSITIONS, TRAMPOLINE_X_POSITIONS)
+    player1 = Player(700, 0, game)
+    enemy1 = Enemy(700, 0, game)
     running = True
 
     while running:

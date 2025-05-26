@@ -3,8 +3,8 @@ import random
 from entity import Entity
 
 class Enemy(Entity):
-    def __init__(self, x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS):
-        super().__init__(SCREEN_WIDTH-x, rail_index, SCREEN_WIDTH, RAIL_Y_POSITIONS, TRAMPOLINE_X_POS, "enemy", color=(255, 0, 0))
+    def __init__(self, x, rail_index, game):
+        super().__init__(game.SCREEN_WIDTH-x, rail_index, "enemy", game, color=(255, 0, 0))
         self.direction = 1
         self.alive = True
 
